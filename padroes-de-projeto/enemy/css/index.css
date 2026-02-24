@@ -1,0 +1,34 @@
+.contentBox {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.contentEnemy {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.imgPlayerFace {
+    width: 400px;
+    height: 400px;
+}
+
+.lifeBar {
+    background-color: green;
+    width: 200px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.btnAttack {
+    padding: 5px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(221, 136, 136);
+}
+
