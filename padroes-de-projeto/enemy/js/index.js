@@ -5,33 +5,27 @@ let audioSad = new Audio("audio/music-sad.mp3");
 let life = 200;
 let isDead = false;
 
-btnAttack.onclick = attack;
+const playerFaceImage = document.querySelector("#imgPlayerFace");
+const attackButton = document.querySelector("#btnAttack");
+const lifeBar = document.querySelector("#lifeBar")
+const messageDeath = document.querySelector("#msgDeath");
+
+attackButton.onclick = attack;
 
 function attack() {
-    takeDamageOnLife(40);
+    if (isDead) return;
+
+    takeDamageOnLife(20);
     
     updateLifeBar();
 
     if (life <= 0){
-        imgPlayerFace.src = "../img/deading.png";
-        audioDeath.play();
-
-        setTimeout(function() {
-            imgPlayerFace.src = "../img/dead.png"
-            isDead = true;
-            audioSad.play();
-
-            setTimeout(reset, 18_000);
-        }, 5000);
+        dead();
 
         return;
     }
     
-    imgPlayerFace.src = "../img/scream.png";
-    audioScream.play();
-    setTimeout(function() {
-        imgPlayerFace.src = "../img/happy.png";
-    }, 4000);
+    hit();
 }
 
 function takeDamageOnLife(damage) {
@@ -41,11 +35,50 @@ function takeDamageOnLife(damage) {
 
 function updateLifeBar() {
     lifeBar.style.width = life + "px";
+
+    updateColorLifeBar();
+}
+
+function updateColorLifeBar() {
+    if (life <= 50) {
+        lifeBar.style.backgroundColor = "red";
+    } else if (life <= 100) {
+        lifeBar.style.backgroundColor = "orange";
+    } else {
+        lifeBar.style.backgroundColor = "green";
+    }
+}
+
+function dead() {
+    playerFaceImage.src = "./img/deading.png";
+    messageDeath.textContent = "MORRENDO";
+    audioDeath.play();
+
+    setTimeout(function () {
+        playerFaceImage.src = "./img/dead.png";
+        messageDeath.textContent = "MORREU";
+        isDead = true;
+        audioSad.play();
+
+        setTimeout(reset, 18000);
+    }, 5000);
 }
 
 function reset() {
     life = 200;
     isDead = false;
-    lifeBar.style.width = life + "px";
-    imgPlayerFace.src = "../img/happy.png"
+    messageDeath.textContent = "";
+    updateLifeBar();
+    playerFaceImage.src = "./img/happy.png"
+}
+
+function hit() {
+    audioScream.currentTime = 0;
+    audioScream.play();
+    
+    playerFaceImage.src = "./img/scream.png";
+    
+    setTimeout(function () {
+        playerFaceImage.src = "./img/happy.png";
+    }, 4000);
 }

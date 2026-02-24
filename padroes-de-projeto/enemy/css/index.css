@@ -1,3 +1,8 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+}
+
 .contentBox {
     display: flex;
     flex-flow: row wrap;
@@ -8,8 +13,7 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    gap: 20px;
-
+    gap: 10px;
 }
 
 .imgPlayerFace {
@@ -29,6 +33,13 @@
     width: 100px;
     border: none;
     border-radius: 5px;
-    background-color: rgb(221, 136, 136);
+    background-color: rgb(255, 97, 97);
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.btnAttack:active {
+    transform: scale(0.9);
 }
 
