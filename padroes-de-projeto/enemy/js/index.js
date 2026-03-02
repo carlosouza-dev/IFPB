@@ -21,7 +21,7 @@ function attack() {
 
     if (life <= 0){
         dead();
-
+        
         return;
     }
     
@@ -79,6 +79,6 @@ function hit() {
     playerFaceImage.src = "./img/scream.png";
     
     setTimeout(function () {
-        playerFaceImage.src = "./img/happy.png";
+        playerFaceImage.src = "./img/sad.png";
     }, 4000);
 }
